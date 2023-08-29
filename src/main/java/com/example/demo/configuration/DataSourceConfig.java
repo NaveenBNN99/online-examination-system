@@ -10,7 +10,7 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         return DataSourceBuilder
                 .create()
-                .url("jdbc:postgresql://database-1.ckhxbf4wuzkc.us-east-1.rds.amazonaws.com:5432/onlineeaxm")
+                .url("jdbc:postgresql://online-exam.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/onlineexam")
                 .username("postgres")
                 .password("admin123")
                 .driverClassName("org.postgresql.Driver")
