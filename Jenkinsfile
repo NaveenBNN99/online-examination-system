@@ -77,11 +77,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            input message: 'Terraform? (Click "Proceed" to destroy)', ok: 'Proceed'
-            sh 'terraform destroy -auto-approve'
-        }
-    }
 }
