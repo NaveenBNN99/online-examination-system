@@ -10,9 +10,9 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         return DataSourceBuilder
                 .create()
-                .url("jdbc:postgresql://online-exam.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/onlineexam")
-                .username("postgres")
-                .password("admin123")
+                .url("jdbc:postgresql://demodb.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/demodb")
+                .username("pradeep")
+                .password("Passw0rd!123")
                 .driverClassName("org.postgresql.Driver")
                 .build();
     }
