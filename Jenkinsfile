@@ -11,7 +11,7 @@ pipeline {
     }
     
     stages {
-        stage('Authenticate and Deploy') {
+        stage('Authenticate') {
             steps {
                 script {
                     
@@ -35,7 +35,7 @@ pipeline {
         stage('Build with Gradle') {
             steps {
                 script {
-                    sh 'sudo chmod +x ./gradlew'
+                    sh 'chmod +x ./gradlew'
                     sh './gradlew clean build'
                 }
             }
@@ -63,33 +63,6 @@ pipeline {
                 script {
                     def kubectlDir = "/usr/local/bin/"  // Replace with the actual path
                     env.PATH = "${kubectlDir}:${env.PATH}"
-                }
-            }
-        }
-        
-        stage('Terraform Init') {
-            steps {
-                script {
-                    sh 'terraform init'
-                }
-            }
-        }
-        
-        stage('Terraform Plan') {
-            steps {
-                script {
-                    // Run Terraform plan
-                    sh 'terraform plan -out=tfplan'
-                    archiveArtifacts artifacts: 'tfplan', allowEmptyArchive: true
-                }
-            }
-        }
-
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    // Run Terraform apply
-                    sh 'terraform apply -auto-approve tfplan'
                 }
             }
         }
