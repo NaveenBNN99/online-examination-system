@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: online-app  
+  template:
+    metadata:
+      labels:
+        app: online-app
+    spec:
+      containers:
+        - name: online-app  
+          image: 494043708686.dkr.ecr.us-east-1.amazonaws.com/online-exam:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: DB_HOST
+              value: demodb.cswc818y3x3o.us-east-1.rds.amazonaws.com
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: onlineexam
+            - name: DB_USER
+              value: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key:  password
+      imagePullSecrets:
+        - name: regcred
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: online-app-service
+spec:
+  selector:
+    app: online-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080 
+  type: LoadBalancer
