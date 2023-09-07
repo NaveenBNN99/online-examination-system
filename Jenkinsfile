@@ -7,18 +7,18 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('Secret-key')
         IMAGE_REPO_NAME = "online-exam"
         IMAGE_TAG = "latest"
-        REPOSITORY_URI = "967432970863.dkr.ecr.us-east-1.amazonaws.com/online-exam"
+        REPOSITORY_URI = "494043708686.dkr.ecr.us-east-1.amazonaws.com/online-exam"
     }
     
     stages {
         stage('Authenticate and Deploy') {
             steps {
                 script {
-                    // Get ECR authorization token
+                    
                     def ecrAuthToken = sh(script: "aws ecr get-login-password --region ${AWS_DEFAULT_REGION}", returnStdout: true).trim()
                     
-                    // Authenticate Docker with ECR using the retrieved token
-                    sh "docker login -u AWS -p ${ecrAuthToken} 967432970863.dkr.ecr.us-east-1.amazonaws.com/online-exam"
+                    
+                    sh "docker login -u AWS -p ${ecrAuthToken} 494043708686.dkr.ecr.us-east-1.amazonaws.com/online-exam"
                     
                     // Continue with your deployment steps
                     // ...
