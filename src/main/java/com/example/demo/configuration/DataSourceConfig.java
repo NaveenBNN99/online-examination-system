@@ -12,7 +12,7 @@ public class DataSourceConfig {
                 .create()
                 .url("jdbc:postgresql://demodb.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/demodb")
                 .username("pradeep")
-                .password("Passw0rd!123")
+                .password("admin123")
                 .driverClassName("org.postgresql.Driver")
                 .build();
     }
