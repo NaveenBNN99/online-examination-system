@@ -20,8 +20,7 @@ pipeline {
                     
                     sh "docker login -u AWS -p ${ecrAuthToken} 494043708686.dkr.ecr.us-east-1.amazonaws.com/online-exam"
                     
-                    // Continue with your deployment steps
-                    // ...
+                   
                 }
             }
         }
@@ -61,7 +60,7 @@ pipeline {
         stage('Install kubectl') {
             steps {
                 script {
-                    def kubectlDir = "/usr/local/bin/"  // Replace with the actual path
+                    def kubectlDir = "/usr/local/bin/"  
                     env.PATH = "${kubectlDir}:${env.PATH}"
                 }
             }
@@ -71,8 +70,8 @@ pipeline {
             steps {
                 script {
                     echo "Current PATH: ${env.PATH}"
-                    sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                     sh "kubectl apply -f deployment.yaml"
+                    sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                 }
             }
         }
