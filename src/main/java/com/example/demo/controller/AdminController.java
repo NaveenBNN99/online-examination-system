@@ -60,11 +60,7 @@ public class AdminController {
 	public String test() {
 		return "Admin!!!!!";
 	}
-	@GetMapping("/test2")
-	public String tests() {
-		return "Admin-2";
-	}
-
+	
 	@GetMapping("/showkeys")
 	public List<AnswerKeys> getAllAnswerKeys() {
 		return keyservice.getAllAnswerKeys();
