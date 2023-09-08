@@ -61,7 +61,7 @@ public class AdminController {
 		return "Admin!!!!!";
 	}
 	@GetMapping("/test2")
-	public String test() {
+	public String tests() {
 		return "Admin-2";
 	}
 
