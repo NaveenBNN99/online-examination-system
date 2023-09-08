@@ -60,6 +60,10 @@ public class AdminController {
 	public String test() {
 		return "Admin!!!!!";
 	}
+	@GetMapping("/test2")
+	public String test() {
+		return "Admin-2";
+	}
 
 	@GetMapping("/showkeys")
 	public List<AnswerKeys> getAllAnswerKeys() {
