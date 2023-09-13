@@ -1,0 +1,44 @@
+# sonarqube-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarqube
+  template:
+    metadata:
+      labels:
+        app: sonarqube
+    spec:
+      containers:
+        - name: sonarqube
+          image: sonarqube:latest
+          ports:
+            - containerPort: 9000  # SonarQube default port
+          env:
+            - name: SONARQUBE_JDBC_URL
+              value: jdbc:postgresql://sonarqube-db:5432/sonar  # Change this based on your PostgreSQL setup
+            - name: SONARQUBE_JDBC_USERNAME
+              value: pradep
+            - name: SONARQUBE_JDBC_PASSWORD
+              value: admin123
+            - name: SONARQUBE_WEB_JVM_OPTS
+              value: -Dsonar.web.context=/sonar
+
+# sonarqube-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarqube
+spec:
+  selector:
+    app: sonarqube
+  ports:
+    - protocol: TCP
+      port: 9000  # The port SonarQube is running on
+      targetPort: 9000
+  type: LoadBalancer  # You can use LoadBalancer to expose SonarQube to the internet
+
