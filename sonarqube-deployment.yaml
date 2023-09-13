@@ -20,7 +20,7 @@ spec:
             - containerPort: 9000  # SonarQube default port
           env:
             - name: SONARQUBE_JDBC_URL
-              value: jdbc:postgresql://sonarqube-db:5432/sonar  # Change this based on your PostgreSQL setup
+              value: jdbc:postgresql://demodb.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/demodb  # Change this based on your PostgreSQL setup
             - name: SONARQUBE_JDBC_USERNAME
               value: pradep
             - name: SONARQUBE_JDBC_PASSWORD
