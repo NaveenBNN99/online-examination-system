@@ -72,7 +72,7 @@ pipeline {
                     echo "Current PATH: ${env.PATH}"
                     sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                     sh "kubectl apply -f deployment.yaml"
-                    sh "kubectl apply -f argodc-deployment.yaml"
+                    sh "kubectl apply -f argocd-deployment.yaml"
                     sh "kubectl apply -f sonarqube-deployment.yaml"
                 }
             }
