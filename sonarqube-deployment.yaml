@@ -22,7 +22,7 @@ spec:
             - name: SONARQUBE_JDBC_URL
               value: jdbc:postgresql://demodb.cswc818y3x3o.us-east-1.rds.amazonaws.com:5432/demodb  # Change this based on your PostgreSQL setup
             - name: SONARQUBE_JDBC_USERNAME
-              value: pradep
+              value: pradeep
             - name: SONARQUBE_JDBC_PASSWORD
               value: admin123
             - name: SONARQUBE_WEB_JVM_OPTS
