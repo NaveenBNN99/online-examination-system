@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-server
+    spec:
+      containers:
+        - name: argocd-server
+          image: argoproj/argocd:v2.3.0  # Replace with the desired ArgoCD version
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ARGOCD_OPTS
+              value: --server
+          volumeMounts:
+            - name: argocd-data
+              mountPath: /app/config
+      volumes:
+        - name: argocd-data
+          emptyDir: {}
+
+# argocd-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server-service
+  namespace: argocd
+spec:
+  selector:
+    app.kubernetes.io/name: argocd-server
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081  
+  type: NodePort  
